@@ -34,7 +34,30 @@ const translations = {
         order_color: "Couleur de base : ",
         order_options: "Options choisies : ",
         order_total: "Total : ",
-        order_none: "Aucune"
+        order_none: "Aucune",
+        config_info_title: "Vos Informations",
+        placeholder_lastname: "Nom",
+        placeholder_firstname: "Prénom",
+        placeholder_phone: "Numéro de téléphone",
+        config_insta_btn: "Instagram",
+        proto_title: "Prototypes Réels",
+        proto_desc: "Visualisez nos créations terminées pour vous inspirer.",
+        delivery_urgency: "Urgence Livraison :",
+        delivery_time: "Délai minimum : 5 jours ouvrés.",
+        tier4_name: "Custom Premium",
+        cust_info_summary: "Client : ",
+        config_model_title: "Choisir mon modèle",
+        config_insp_title: "Mon inspiration",
+        insp_btn_label: "Ajouter une image d'inspiration",
+        insp_helper: "Partage une photo de référence (motif, couleurs, style...) pour que je puisse créer exactement ce que tu imagines.",
+        insp_ready: "Image sélectionnée",
+        order_insp_reminder: "⚠️ N'oubliez pas de joindre votre image d'inspiration à ce message !",
+        inspo_title: "VOS INSPOS",
+        inspo_desc: "Vous aimez une de nos créations ? Sélectionnez-la et dites-nous comment la personnaliser pour vous.",
+        inspo_mod_label: "Des modifications à apporter ? (couleur, texte, motif...)",
+        placeholder_inspo_mod: "Vos précisions ici...",
+        order_gallery_inspo: "Inspiration choisie : ",
+        order_gallery_mods: "Modifications : "
     },
     en: {
         nav_home: "Home", nav_collection: "Collection", nav_config: "Customize", nav_about: "Our Story", nav_order: "Order Now",
@@ -70,14 +93,40 @@ const translations = {
         order_color: "Base Color: ",
         order_options: "Chosen Options: ",
         order_total: "Total: ",
-        order_none: "None"
+        order_none: "None",
+        config_info_title: "Your Information",
+        placeholder_lastname: "Last Name",
+        placeholder_firstname: "First Name",
+        placeholder_phone: "Phone Number",
+        config_insta_btn: "Instagram",
+        proto_title: "Real Prototypes",
+        proto_desc: "Check out our finished creations for inspiration.",
+        delivery_urgency: "Delivery Urgency:",
+        delivery_time: "Minimum time: 5 business days.",
+        tier4_name: "Custom Premium",
+        cust_info_summary: "Customer: ",
+        config_model_title: "Choose my Model",
+        config_insp_title: "My Inspiration",
+        insp_btn_label: "Add an inspiration image",
+        insp_helper: "Share a reference photo (motif, colors, style...) so I can create exactly what you imagine.",
+        insp_ready: "Image selected",
+        order_insp_reminder: "⚠️ Don't forget to attach your inspiration image to this message!",
+        inspo_title: "YOUR INSPOS",
+        inspo_desc: "Love one of our creations? Select it and tell us how to personalize it for you.",
+        inspo_mod_label: "Any modifications? (color, text, motif...)",
+        placeholder_inspo_mod: "Your details here...",
+        order_gallery_inspo: "Gallery Inspiration: ",
+        order_gallery_mods: "Modifications: "
     }
 };
 
 // State
 let currentLang = 'fr';
-let selectedColor = 'Beige';
-const basePrice = 2000; // Updated as per user feedback
+let selectedModel = 'classic';
+let selectedColor = 'Terracotta';
+let basePrice = 2000;
+let hasInspiration = false;
+let selectedGalleryInspo = null;
 
 // Language Logic
 function setLanguage(lang) {
@@ -97,14 +146,80 @@ function setLanguage(lang) {
 document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
 document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
 
+// Model Selection Logic
+document.querySelectorAll('.model-card').forEach(card => {
+    card.addEventListener('click', () => {
+        document.querySelectorAll('.model-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedModel = card.getAttribute('data-model');
+        basePrice = parseInt(card.getAttribute('data-price'));
+        
+        // Filter colors
+        document.querySelectorAll('.color-circle').forEach(circle => {
+            const models = circle.getAttribute('data-models').split(',');
+            if (models.includes(selectedModel)) {
+                circle.style.display = 'block';
+            } else {
+                circle.style.display = 'none';
+                if (circle.classList.contains('selected')) {
+                    // Switch to Blanc if current color is hidden
+                    document.querySelector('.color-circle.color-white').click();
+                }
+            }
+        });
+        
+        updatePrice();
+        updatePreviewImage();
+    });
+});
+
 // Color Logic
 document.querySelectorAll('.color-circle').forEach(circle => {
     circle.addEventListener('click', () => {
         document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
         circle.classList.add('selected');
         selectedColor = circle.getAttribute('data-color');
+        updatePreviewImage();
     });
 });
+
+function updatePreviewImage() {
+    const previewImg = document.getElementById('preview-img');
+    const colorKey = selectedColor.toLowerCase();
+    
+    let imageSrc = '';
+    
+    if (selectedModel === 'classic') {
+        const colorImages = {
+            'terracotta': 'assets/inspo_1.jpeg',
+            'blanc': 'assets/inspo_2.jpeg',
+            'rose': 'assets/inspo_3.jpeg',
+            'violet': 'assets/inspo_4.jpeg',
+            'noir': 'assets/inspo_5.jpeg',
+            'gris': 'assets/inspo_6.jpeg',
+            'navy': 'assets/inspo_7.jpeg'
+        };
+        imageSrc = colorImages[colorKey];
+    } else {
+        const softImages = {
+            'vert': 'assets/soft_vert.png',
+            'bleu': 'assets/soft_bleu.png',
+            'blanc': 'assets/soft_blanc.png',
+            'gris': 'assets/soft_gris.png',
+            'noir': 'assets/soft_noir.png',
+            'navy': 'assets/soft_bleu.png' // Fallback
+        };
+        imageSrc = softImages[colorKey] || softImages['blanc'];
+    }
+
+    if (imageSrc) {
+        previewImg.style.opacity = '0';
+        setTimeout(() => {
+            previewImg.src = imageSrc;
+            previewImg.style.opacity = '1';
+        }, 300);
+    }
+}
 
 // Customizer Logic
 const totalPriceEl = document.getElementById('total-price');
@@ -129,7 +244,16 @@ function updatePrice() {
 optChecks.forEach(check => check.addEventListener('change', updatePrice));
 
 // Finalize Order Logic
-document.getElementById('order-btn').addEventListener('click', () => {
+function getOrderData() {
+    const lastName = document.getElementById('cust-lastname').value;
+    const firstName = document.getElementById('cust-firstname').value;
+    const phone = document.getElementById('cust-phone').value;
+
+    if (!lastName || !firstName || !phone) {
+        alert(currentLang === 'fr' ? "Veuillez remplir vos informations." : "Please fill in your information.");
+        return null;
+    }
+
     let options = [];
     let total = basePrice;
     
@@ -144,31 +268,128 @@ document.getElementById('order-btn').addEventListener('click', () => {
         }
     });
 
+    const orderData = {
+        model: selectedModel === 'classic' ? 'H · Classic' : 'H · Soft',
+        customer: `${firstName} ${lastName}`,
+        phone: phone,
+        color: selectedColor,
+        options: options,
+        total: total,
+        hasInspiration: hasInspiration,
+        galleryInspo: selectedGalleryInspo,
+        galleryMods: selectedGalleryInspo ? document.getElementById('inspo-mod-text').value : '',
+        date: new Date().toISOString()
+    };
+
+    // Save to localStorage
+    const history = JSON.parse(localStorage.getItem('htotes_orders') || '[]');
+    history.push(orderData);
+    localStorage.setItem('htotes_orders', JSON.stringify(history));
+
+    return orderData;
+}
+
+document.getElementById('order-btn').addEventListener('click', () => {
+    const order = getOrderData();
+    if (!order) return;
+
     const t = translations[currentLang];
     const summary = `
 ${t.order_summary_head}
 -------------------------
-${t.order_color} ${selectedColor}
-${t.order_options} ${options.length > 0 ? options.join(', ') : t.order_none}
-${t.order_total} ${total.toLocaleString()} F CFA
+Modèle : ${order.model}
+${t.cust_info_summary}${order.customer}
+${t.placeholder_phone}: ${order.phone}
+${t.order_color} ${order.color}
+${t.order_options} ${order.options.length > 0 ? order.options.join(', ') : t.order_none}
+${t.order_total} ${order.total.toLocaleString()} F CFA
+${order.hasInspiration ? '\n' + t.order_insp_reminder : ''}
+${order.galleryInspo ? `\n${t.order_gallery_inspo}${order.galleryInspo}` : ''}
+${order.galleryMods ? `\n${t.order_gallery_mods}${order.galleryMods}` : ''}
     `.trim();
 
-    // Generate WhatsApp link (placeholder number, user should update it)
     const encodedSummary = encodeURIComponent(summary);
-    const waLink = `https://wa.me/?text=${encodedSummary}`;
+    const waLink = `https://wa.me/22990000000?text=${encodedSummary}`; // Replace with real number
     
-    // Fallback: Copy to clipboard and alert user
-    navigator.clipboard.writeText(summary).then(() => {
-        const msg = currentLang === 'fr' 
-            ? "Résumé de commande copié ! Redirection vers la messagerie..." 
-            : "Order summary copied! Redirecting to messaging...";
-        alert(msg);
-        window.open(waLink, '_blank');
-    });
+    window.open(waLink, '_blank');
+});
+
+document.getElementById('insta-btn').addEventListener('click', () => {
+    const order = getOrderData();
+    if (!order) return;
+    
+    alert(currentLang === 'fr' 
+        ? "Redirection vers Instagram. N'oubliez pas d'envoyer votre nom et les détails de votre commande !" 
+        : "Redirecting to Instagram. Don't forget to send your name and order details!");
+    
+    window.open("https://www.instagram.com/htote.s", '_blank');
 });
 
 // Initial Price Update
 updatePrice();
+
+// Inspiration Upload Logic
+const inspUpload = document.getElementById('insp-upload');
+const uploadTrigger = document.getElementById('upload-trigger');
+const previewContainer = document.getElementById('insp-preview-container');
+const imgPreview = document.getElementById('insp-img-preview');
+const removeInsp = document.getElementById('remove-insp');
+
+if (uploadTrigger) {
+    uploadTrigger.addEventListener('click', () => inspUpload.click());
+
+    inspUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert(currentLang === 'fr' ? "L'image est trop volumineuse (max 5MB)." : "Image is too large (max 5MB).");
+            inspUpload.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            imgPreview.src = e.target.result;
+            previewContainer.style.display = 'flex';
+            uploadTrigger.style.display = 'none';
+            hasInspiration = true;
+        };
+        reader.readAsDataURL(file);
+    });
+
+    removeInsp.addEventListener('click', () => {
+        inspUpload.value = '';
+        previewContainer.style.display = 'none';
+        uploadTrigger.style.display = 'flex';
+        hasInspiration = false;
+    });
+}
+
+// VOS INSPOS Interaction
+const inspoItems = document.querySelectorAll('.inspo-item');
+const inspoModContainer = document.getElementById('inspo-mod-container');
+
+inspoItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const isSelected = item.classList.contains('selected');
+        
+        // Clear all selections
+        inspoItems.forEach(i => i.classList.remove('selected'));
+        
+        if (isSelected) {
+            // Deselect
+            selectedGalleryInspo = null;
+            inspoModContainer.style.display = 'none';
+        } else {
+            // Select
+            item.classList.add('selected');
+            selectedGalleryInspo = item.getAttribute('data-inspo');
+            inspoModContainer.style.display = 'block';
+            inspoModContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
+});
 
 // Scroll & Animations
 const header = document.querySelector('header');

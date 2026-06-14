@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H Totes | Sacs personnalisés haut de gamme</title>
-    <meta name="description" content="Découvrez H Totes, des sacs en toile faits main et 100% personnalisables. Broderie, Ankara, Perles - L'élégance unique, au campus et au-delà.">
+    <meta name="description"
+        content="Découvrez H Totes, des sacs en toile faits main et 100% personnalisables. Broderie, Ankara, Perles - L'élégance unique, au campus et au-delà.">
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
 
     <header id="header">
         <div class="logo">
-            <img src="logo.png" alt="H.TOTES" style="height: 50px; width: auto; vertical-align: middle;">
+            <img src="logo.png" alt="H.TOTES" style="height: 160px; width: auto; vertical-align: middle;">
         </div>
         <nav>
             <ul>
                 <li><a href="#home" data-i18n="nav_home">Accueil</a></li>
-                <li><a href="#collection" data-i18n="nav_collection">Collection</a></li>
                 <li><a href="#configurator" data-i18n="nav_config">Personnaliser</a></li>
                 <li><a href="#about" data-i18n="nav_about">Notre Histoire</a></li>
             </ul>
@@ -26,7 +28,8 @@
                 <span class="lang-btn active" id="btn-fr">FR</span>
                 <span class="lang-btn" id="btn-en">EN</span>
             </div>
-            <a href="https://www.instagram.com/htote.s?igsh=MWZneDY3NjZjdTQ1Mw%3D%3D&utm_source=qr" class="cta-btn" style="padding: 10px 25px; font-size: 0.8rem; margin-left: 20px;" data-i18n="nav_order">Commander</a>
+            <a href="https://www.instagram.com/htote.s?igsh=MWZneDY3NjZjdTQ1Mw%3D%3D&utm_source=qr" class="cta-btn"
+                style="padding: 10px 25px; font-size: 0.8rem; margin-left: 20px;" data-i18n="nav_order">Commander</a>
         </div>
     </header>
 
@@ -34,7 +37,8 @@
         <div class="hero-content">
             <span class="hero-tagline" data-i18n="hero_tagline">Artisanat & Personnalisation</span>
             <h1 data-i18n="hero_title">As unique<br>as you are<span>.</span></h1>
-            <p data-i18n="hero_desc">Donnez vie à vos envies avec nos tote bags premium faits main. Chaque pièce est une création unique, conçue spécialement pour vous.</p>
+            <p data-i18n="hero_desc">Donnez vie à vos envies avec nos tote bags premium faits main. Chaque pièce est une
+                création unique, conçue spécialement pour vous.</p>
             <a href="#collection" class="cta-btn" data-i18n="hero_cta">Explorer la collection</a>
         </div>
         <div class="hero-image">
@@ -49,31 +53,57 @@
                 <h2 style="font-size: 2.5rem;" data-i18n="config_title">Configurez votre H Tote</h2>
                 <p data-i18n="config_desc">Personnalisez votre sac en temps réel.</p>
             </div>
-            
+
             <div class="customizer-layout">
                 <div class="customizer-preview">
-                    <img id="preview-img" src="assets/hero.png" alt="Preview">
+                    <img id="preview-img" src="assets/inspo_1.jpeg" alt="Preview">
                     <div class="price-display"><span id="total-price">2000</span> F CFA</div>
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);" data-i18n="config_base_price">(Base + Options)</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);"
+                        data-i18n="config_base_price">(Base + Options)</p>
+                    <div class="delivery-notice"
+                        style="margin-top: 20px; padding: 15px; background: var(--primary-light); border-radius: 10px; font-size: 0.85rem;">
+                        <strong data-i18n="delivery_urgency">Urgence Livraison :</strong>
+                        <p data-i18n="delivery_time">Délai minimum : 5 jours ouvrés.</p>
+                    </div>
                 </div>
 
                 <div class="customizer-form">
+                    <!-- Model Selection -->
+                    <div class="option-group">
+                        <h4 data-i18n="config_model_title">Choisir mon modèle</h4>
+                        <div class="model-grid">
+                            <div class="model-card selected" data-model="classic" data-price="2000">
+                                <img src="assets/inspo_1.jpeg" alt="Classic">
+                                <h5>H · Classic</h5>
+                                <div class="base-price">2,000 F CFA</div>
+                            </div>
+                            <div class="model-card" data-model="soft" data-price="2500">
+                                <img src="assets/soft_vert.png" alt="Soft">
+                                <h5>H · Soft</h5>
+                                <div class="base-price">2,500 F CFA</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Color Selection -->
                     <div class="option-group">
                         <h4 data-i18n="config_color_title">Couleur du sac</h4>
                         <div class="color-options">
-                            <div class="color-circle color-beige selected" data-color="Beige"></div>
-                            <div class="color-circle color-white" data-color="Blanc / White"></div>
-                            <div class="color-circle color-black" data-color="Noir / Black"></div>
-                            <div class="color-circle color-navy" data-color="Bleu Marine / Navy"></div>
-                            <div class="color-circle color-pink" data-color="Rose / Pink"></div>
+                            <div class="color-circle color-terracotta selected" data-color="Terracotta" data-models="classic"></div>
+                            <div class="color-circle color-white" data-color="Blanc" data-models="classic,soft"></div>
+                            <div class="color-circle color-pink" data-color="Rose" data-models="classic"></div>
+                            <div class="color-circle color-purple" data-color="Violet" data-models="classic"></div>
+                            <div class="color-circle color-black" data-color="Noir" data-models="classic,soft"></div>
+                            <div class="color-circle color-grey" data-color="Gris" data-models="classic,soft"></div>
+                            <div class="color-circle color-navy" data-color="Navy" data-models="classic,soft"></div>
+                            <div class="color-circle color-green" data-color="Vert" data-models="soft" style="background: #4A5D4E; display: none;"></div>
                         </div>
                     </div>
 
                     <!-- Personalization Options -->
                     <div class="option-group">
                         <h4 data-i18n="config_options_title">Options de personnalisation</h4>
-                        
+
                         <label class="check-item">
                             <input type="checkbox" class="opt-check" data-price="1500" id="opt-flocage">
                             <span data-i18n="opt_flocage">Ajouter un flocage (+1,500 F)</span>
@@ -89,7 +119,9 @@
                                 <input type="checkbox" class="opt-check" data-price="3000" id="opt-broderie">
                                 <span data-i18n="opt_broderie">Ajouter une broderie (+3,000 F)</span>
                             </label>
-                            <input type="text" class="motif-input" id="motif-text" placeholder="Quel motif ou mot souhaitez-vous broder ?" data-i18n-placeholder="placeholder_broderie">
+                            <input type="text" class="motif-input" id="motif-text"
+                                placeholder="Quel motif ou mot souhaitez-vous broder ?"
+                                data-i18n-placeholder="placeholder_broderie">
                         </div>
 
                         <label class="check-item">
@@ -98,34 +130,92 @@
                         </label>
                     </div>
 
-                    <button id="order-btn" class="cta-btn" style="width: 100%; border: none; cursor: pointer; display: block;" data-i18n="config_order_btn">Finaliser ma commande</button>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 15px; text-align: center;" data-i18n="config_order_note">* Un résumé sera généré pour votre message direct.</p>
+                    <!-- Inspiration Upload -->
+                    <div class="option-group">
+                        <h4 data-i18n="config_insp_title">Mon inspiration</h4>
+                        <input type="file" id="insp-upload" accept="image/png, image/jpeg, image/webp" style="display: none;">
+                        <div class="upload-zone" id="upload-trigger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <span data-i18n="insp_btn_label">Ajouter une image d'inspiration</span>
+                        </div>
+                        <div id="insp-preview-container" class="upload-preview-container" style="display: none;">
+                            <div class="upload-preview">
+                                <img id="insp-img-preview" src="" alt="Preview">
+                                <button class="remove-upload" id="remove-insp">X</button>
+                            </div>
+                            <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;" data-i18n="insp_ready">Image sélectionnée</span>
+                        </div>
+                        <p class="upload-text" data-i18n="insp_helper">
+                            Partage une photo de référence (motif, couleurs, style...) pour que je puisse créer exactement ce que tu imagines.
+                        </p>
+                    </div>
+
+                    <!-- Customer Info -->
+                    <div class="option-group">
+                        <h4 data-i18n="config_info_title">Vos Informations</h4>
+                        <div class="input-row">
+                            <input type="text" id="cust-lastname" placeholder="Nom"
+                                data-i18n-placeholder="placeholder_lastname" required>
+                            <input type="text" id="cust-firstname" placeholder="Prénom"
+                                data-i18n-placeholder="placeholder_firstname" required>
+                        </div>
+                        <input type="tel" id="cust-phone" placeholder="Numéro de téléphone pour la livraison"
+                            data-i18n-placeholder="placeholder_phone" required style="width: 100%; margin-top: 10px;">
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button id="order-btn" class="cta-btn"
+                            style="flex: 2; border: none; cursor: pointer; display: block;"
+                            data-i18n="config_order_btn">Finaliser sur WhatsApp</button>
+                        <button id="insta-btn" class="cta-btn"
+                            style="flex: 1; border: none; cursor: pointer; display: block; background: #E1306C;"
+                            data-i18n="config_insta_btn">Instagram</button>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 15px; text-align: center;"
+                        data-i18n="config_order_note">* Vos informations seront sauvegardées localement.</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Hidden Collection for reference if needed -->
-    <section class="container" id="collection" style="background: var(--bg-alt); margin-top: 80px;">
+    <!-- VOS INSPOS Section -->
+    <section class="container" id="vos-inspos">
         <div style="text-align: center; margin-bottom: 60px;">
-            <h2 style="font-size: 3rem; margin-bottom: 15px;" data-i18n="coll_title">Nos Gammes</h2>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;" data-i18n="coll_desc">Découvrez nos styles artisanaux.</p>
+            <h2 style="font-size: 3rem; margin-bottom: 15px;" data-i18n="inspo_title">VOS INSPOS</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;" data-i18n="inspo_desc">Vous aimez une de nos créations ? Sélectionnez-la et dites-nous comment la personnaliser pour vous.</p>
         </div>
-        <div class="collection-grid">
-            <div class="product-card">
-                <div class="product-img"><img src="assets/flocage.png" alt="Flocage"></div>
-                <div class="product-info"><h3 class="product-name" data-i18n="tier1_name">Flocage Simple</h3><span class="product-price">5,000 F CFA</span></div>
-            </div>
-            <div class="product-card" style="transform: translateY(20px);">
-                <div class="product-img"><img src="assets/broderie.png" alt="Broderie"></div>
-                <div class="product-info"><h3 class="product-name" data-i18n="tier2_name">Broderie</h3><span class="product-price">6,500 F CFA</span></div>
-            </div>
-            <div class="product-card">
-                <div class="product-img"><img src="assets/bead_chain.png" alt="Chaînette"></div>
-                <div class="product-info"><h3 class="product-name" data-i18n="tier3_name">Chaînette en perles</h3><span class="product-price">7,500 F CFA</span></div>
-            </div>
+        <div class="inspo-gallery">
+            <div class="inspo-item" data-inspo="inspiration1.jpeg"><img src="assets/inspiration1.jpeg" alt="Inspiration 1"></div>
+            <div class="inspo-item" data-inspo="inspiration2.jpeg"><img src="assets/inspiration2.jpeg" alt="Inspiration 2"></div>
+            <div class="inspo-item" data-inspo="inspiration3.jpeg"><img src="assets/inspiration3.jpeg" alt="Inspiration 3"></div>
+            <div class="inspo-item" data-inspo="inspiration4.jpeg"><img src="assets/inspiration4.jpeg" alt="Inspiration 4"></div>
+            <div class="inspo-item" data-inspo="inspiration5.jpeg"><img src="assets/inspiration5.jpeg" alt="Inspiration 5"></div>
+            <div class="inspo-item" data-inspo="inspiration6.jpeg"><img src="assets/inspiration6.jpeg" alt="Inspiration 6"></div>
+            <div class="inspo-item" data-inspo="inspiration7.jpeg"><img src="assets/inspiration7.jpeg" alt="Inspiration 7"></div>
+            <div class="inspo-item" data-inspo="inspiration8.jpeg"><img src="assets/inspiration8.jpeg" alt="Inspiration 8"></div>
+            <div class="inspo-item" data-inspo="inspiration9.jpeg"><img src="assets/inspiration9.jpeg" alt="Inspiration 9"></div>
+            <div class="inspo-item" data-inspo="inspiration10.jpeg"><img src="assets/inspiration10.jpeg" alt="Inspiration 10"></div>
+            <div class="inspo-item" data-inspo="inspiration11.jpeg"><img src="assets/inspiration11.jpeg" alt="Inspiration 11"></div>
+            <div class="inspo-item" data-inspo="inspiration12.jpeg"><img src="assets/inspiration12.jpeg" alt="Inspiration 12"></div>
+            <div class="inspo-item" data-inspo="inspiration13.jpeg"><img src="assets/inspiration13.jpeg" alt="Inspiration 13"></div>
+            <div class="inspo-item" data-inspo="inspiration14.jpeg"><img src="assets/inspiration14.jpeg" alt="Inspiration 14"></div>
+            <div class="inspo-item" data-inspo="inspiration15.jpeg"><img src="assets/inspiration15.jpeg" alt="Inspiration 15"></div>
+            <div class="inspo-item" data-inspo="inspiration16.jpeg"><img src="assets/inspiration16.jpeg" alt="Inspiration 16"></div>
+            <div class="inspo-item" data-inspo="inspitation17.jpeg"><img src="assets/inspitation17.jpeg" alt="Inspiration 17"></div>
+            <div class="inspo-item" data-inspo="inspiration18.jpeg"><img src="assets/inspiration18.jpeg" alt="Inspiration 18"></div>
+            <div class="inspo-item" data-inspo="inspiration19.jpeg"><img src="assets/inspiration19.jpeg" alt="Inspiration 19"></div>
+            <div class="inspo-item" data-inspo="inspiration20.jpeg"><img src="assets/inspiration20.jpeg" alt="Inspiration 20"></div>
+            <div class="inspo-item" data-inspo="inspiration21.jpeg"><img src="assets/inspiration21.jpeg" alt="Inspiration 21"></div>
+            <div class="inspo-item" data-inspo="inspiration22.jpeg"><img src="assets/inspiration22.jpeg" alt="Inspiration 22"></div>
+            <div class="inspo-item" data-inspo="inspiration23.jpeg"><img src="assets/inspiration23.jpeg" alt="Inspiration 23"></div>
+        </div>
+        
+        <div id="inspo-mod-container" class="inspo-mod-box" style="display: none; margin-top: 40px; padding: 30px; background: var(--bg-alt); border-radius: 20px;">
+            <label for="inspo-mod-text" style="display: block; margin-bottom: 15px; font-weight: 600; font-size: 1.1rem; color: var(--primary);" data-i18n="inspo_mod_label">Des modifications à apporter ? (couleur, texte, motif...)</label>
+            <textarea id="inspo-mod-text" class="motif-input visible" style="width: 100%; border: 2px solid var(--primary-light); background: var(--white); padding: 20px; border-radius: 12px; font-family: inherit;" placeholder="Vos précisions ici..." data-i18n-placeholder="placeholder_inspo_mod"></textarea>
         </div>
     </section>
+
+
 
     <section class="how-it-works" id="how-it-works">
         <div class="container">
@@ -161,13 +251,18 @@
     <section id="about" style="background-color: var(--white);">
         <div class="container" style="display: flex; align-items: center; gap: 80px;">
             <div style="flex: 1;">
-                <img src="assets/broderie.png" alt="Artisan work" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow);">
+                <img src="assets/broderie.png" alt="Artisan work"
+                    style="width: 100%; border-radius: 20px; box-shadow: var(--shadow);">
             </div>
             <div style="flex: 1;">
-                <span style="color: var(--primary); font-weight: 600; letter-spacing: 2px;" data-i18n="about_tagline">NOTRE HISTOIRE</span>
+                <span style="color: var(--primary); font-weight: 600; letter-spacing: 2px;"
+                    data-i18n="about_tagline">NOTRE HISTOIRE</span>
                 <h2 style="font-size: 3rem; margin: 20px 0;" data-i18n="about_title">Le Savoir-faire de Huziane</h2>
-                <p style="margin-bottom: 25px;" data-i18n="about_p1">Fondé en 2025, H Totes est né d'une passion pour les accessoires qui racontent une histoire.</p>
-                <a href="https://www.instagram.com/htote.s?igsh=MWZneDY3NjZjdTQ1Mw%3D%3D&utm_source=qr" class="cta-btn" style="background: none; border: 2px solid var(--primary); color: var(--primary);" data-i18n="about_insta">Suivez-nous sur Instagram</a>
+                <p style="margin-bottom: 25px;" data-i18n="about_p1">Fondé en 2025, H Totes est né d'une passion pour
+                    les accessoires qui racontent une histoire.</p>
+                <a href="https://www.instagram.com/htote.s?igsh=MWZneDY3NjZjdTQ1Mw%3D%3D&utm_source=qr" class="cta-btn"
+                    style="background: none; border: 2px solid var(--primary); color: var(--primary);"
+                    data-i18n="about_insta">Suivez-nous sur Instagram</a>
             </div>
         </div>
     </section>
@@ -176,12 +271,15 @@
         <div class="logo" style="margin-bottom: 20px;">
             <img src="logo.png" alt="H.TOTES" style="height: 80px; width: auto;">
         </div>
-        <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 40px;" data-i18n="footer_desc">L'élégance artisanale, conçue pour durer.</p>
-        <div style="border-top: 1px solid rgba(0,0,0,0.05); padding-top: 40px; font-size: 0.8rem; color: var(--text-muted);" data-i18n="footer_copy">
+        <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 40px;" data-i18n="footer_desc">L'élégance
+            artisanale, conçue pour durer.</p>
+        <div style="border-top: 1px solid rgba(0,0,0,0.05); padding-top: 40px; font-size: 0.8rem; color: var(--text-muted);"
+            data-i18n="footer_copy">
             &copy; 2026 H Totes. Tous droits réservés.
         </div>
     </footer>
 
     <script src="main.js"></script>
 </body>
+
 </html>
