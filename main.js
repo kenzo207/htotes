@@ -5,7 +5,6 @@ const translations = {
         hero_tagline: "Artisanat & Personnalisation",
         hero_title: "As unique<br>as you are<span>.</span>",
         hero_desc: "Donnez vie à vos envies avec nos tote bags premium faits main.",
-        hero_cta: "Explorer la collection",
         config_title: "Configurez votre H Tote",
         config_desc: "Personnalisez votre sac en temps réel.",
         config_base_price: "(Base + Options)",
@@ -15,6 +14,7 @@ const translations = {
         opt_chainette: "Ajouter une chaînette (+2,500 F)",
         opt_broderie: "Ajouter une broderie (+3,000 F)",
         opt_perles: "Ajouter un motif entier en perles (+4,000 F)",
+        opt_strass: "Rajoute des strass (+2,000 F)",
         placeholder_broderie: "Quel motif ou mot souhaitez-vous broder ?",
         config_order_btn: "Finaliser ma commande",
         config_order_note: "* Un résumé sera généré pour votre message direct.",
@@ -26,7 +26,7 @@ const translations = {
         step4_title: "Livraison", step4_desc: "In-person ou envoi postal.",
         about_tagline: "NOTRE HISTOIRE",
         about_title: "Le Savoir-faire de Huziane",
-        about_p1: "Fondé en 2025, H Totes est né d'une passion pour les accessoires qui racontent une histoire. Chaque objet que nous portons doit être le reflet de notre identité.",
+        about_p1: "Fondé en 2025 au Bénin, H Totes est né d'une conviction simple :\nce que tu portes doit te ressembler. Chaque tote bag est imaginé,\nbrodé et assemblé à la main, avec soin et intention.\nDes perles choisies une à une, des motifs pensés pour toi,\ndes couleurs qui parlent de qui tu es.\nIci, il n'y a pas de stock, pas de série.\nSeulement des pièces uniques, créées sur commande,\npour des femmes qui savent ce qu'elles veulent.",
         about_insta: "Suivez-nous sur Instagram",
         footer_desc: "L'élégance artisanale, conçue pour durer.",
         footer_copy: "&copy; 2026 H Totes. Tous droits réservés.",
@@ -57,14 +57,14 @@ const translations = {
         inspo_mod_label: "Des modifications à apporter ? (couleur, texte, motif...)",
         placeholder_inspo_mod: "Vos précisions ici...",
         order_gallery_inspo: "Inspiration choisie : ",
-        order_gallery_mods: "Modifications : "
+        order_gallery_mods: "Modifications : ",
+        insta_toast: "Infos copiées ! Colle-les dans le DM ✦"
     },
     en: {
         nav_home: "Home", nav_collection: "Collection", nav_config: "Customize", nav_about: "Our Story", nav_order: "Order Now",
         hero_tagline: "Craftsmanship & Personalization",
         hero_title: "As unique<br>as you are<span>.</span>",
         hero_desc: "Bring your desires to life with our premium handmade tote bags.",
-        hero_cta: "Explore Collection",
         config_title: "Configure your H Tote",
         config_desc: "Personalize your bag in real-time.",
         config_base_price: "(Base + Options)",
@@ -74,6 +74,7 @@ const translations = {
         opt_chainette: "Add bead chain (+2,500 F)",
         opt_broderie: "Add embroidery (+3,000 F)",
         opt_perles: "Add full bead motif (+4,000 F)",
+        opt_strass: "Add rhinestones (+2,000 F)",
         placeholder_broderie: "What pattern or word would you like to embroider?",
         config_order_btn: "Finalize my order",
         config_order_note: "* A summary will be generated for your direct message.",
@@ -85,7 +86,7 @@ const translations = {
         step4_title: "Delivery", step4_desc: "In-person or post delivery.",
         about_tagline: "OUR STORY",
         about_title: "Huziane's Craftsmanship",
-        about_p1: "Founded in 2025, H Totes was born from a passion for accessories that tell a story.",
+        about_p1: "Founded in 2025 in Benin, H Totes was born from a simple conviction:\nwhat you wear should look like you. Every tote bag is imagined,\nembroidered and hand-assembled, with care and intention.\nBeads chosen one by one, patterns designed for you,\ncolors that speak to who you are.\nHere, there is no stock, no series.\nOnly one-of-a-kind pieces, made to order,\nfor women who know what they want.",
         about_insta: "Follow us on Instagram",
         footer_desc: "Artisanal elegance, designed to last.",
         footer_copy: "&copy; 2026 H Totes. All rights reserved.",
@@ -116,14 +117,15 @@ const translations = {
         inspo_mod_label: "Any modifications? (color, text, motif...)",
         placeholder_inspo_mod: "Your details here...",
         order_gallery_inspo: "Gallery Inspiration: ",
-        order_gallery_mods: "Modifications: "
+        order_gallery_mods: "Modifications: ",
+        insta_toast: "Info copied! Paste it in the DM ✦"
     }
 };
 
 // State
 let currentLang = 'fr';
 let selectedModel = 'classic';
-let selectedColor = 'Terracotta';
+let selectedColor = 'Marron';
 let basePrice = 2000;
 let hasInspiration = false;
 let selectedGalleryInspo = null;
@@ -191,13 +193,13 @@ function updatePreviewImage() {
     
     if (selectedModel === 'classic') {
         const colorImages = {
-            'terracotta': 'assets/inspo_1.jpeg',
-            'blanc': 'assets/inspo_2.jpeg',
-            'rose': 'assets/inspo_3.jpeg',
-            'violet': 'assets/inspo_4.jpeg',
-            'noir': 'assets/inspo_5.jpeg',
-            'gris': 'assets/inspo_6.jpeg',
-            'navy': 'assets/inspo_7.jpeg'
+            'marron': 'assets/inspo5.png',
+            'blanc': 'assets/inspo3.png',
+            'rose': 'assets/inspo2.png',
+            'violet': 'assets/inspo4.png',
+            'noir': 'assets/inspo1.png',
+            'gris': 'assets/inspo6.png',
+            'navy': 'assets/inspo7.jpeg'
         };
         imageSrc = colorImages[colorKey];
     } else {
@@ -207,7 +209,10 @@ function updatePreviewImage() {
             'blanc': 'assets/soft_blanc.png',
             'gris': 'assets/soft_gris.png',
             'noir': 'assets/soft_noir.png',
-            'navy': 'assets/soft_bleu.png' // Fallback
+            'navy': 'assets/soft_bleu.png', // Fallback
+            'marron': 'assets/soft_brown.png',
+            'violet': 'assets/soft_purple.png',
+            'rose': 'assets/soft_rose.png'
         };
         imageSrc = softImages[colorKey] || softImages['blanc'];
     }
@@ -289,12 +294,9 @@ function getOrderData() {
     return orderData;
 }
 
-document.getElementById('order-btn').addEventListener('click', () => {
-    const order = getOrderData();
-    if (!order) return;
-
+function buildOrderSummary(order) {
     const t = translations[currentLang];
-    const summary = `
+    return `
 ${t.order_summary_head}
 -------------------------
 Modèle : ${order.model}
@@ -307,22 +309,84 @@ ${order.hasInspiration ? '\n' + t.order_insp_reminder : ''}
 ${order.galleryInspo ? `\n${t.order_gallery_inspo}${order.galleryInspo}` : ''}
 ${order.galleryMods ? `\n${t.order_gallery_mods}${order.galleryMods}` : ''}
     `.trim();
+}
 
+function showToast(message, duration = 3000) {
+    let toast = document.getElementById('app-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'app-toast';
+        toast.className = 'toast';
+        document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.remove('visible');
+    requestAnimationFrame(() => toast.classList.add('visible'));
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => toast.classList.remove('visible'), duration);
+}
+
+function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+    }
+    return Promise.resolve(fallbackCopy(text));
+}
+
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+    } catch (e) { /* clipboard unavailable */ }
+    document.body.removeChild(textarea);
+}
+
+document.getElementById('order-btn').addEventListener('click', () => {
+    const order = getOrderData();
+    if (!order) return;
+
+    const summary = buildOrderSummary(order);
     const encodedSummary = encodeURIComponent(summary);
-    const waLink = `https://wa.me/22990000000?text=${encodedSummary}`; // Replace with real number
-    
+    const waLink = `https://wa.me/22955352525?text=${encodedSummary}`;
+
     window.open(waLink, '_blank');
 });
+
+function openInstagram() {
+    const appUrl = 'instagram://user?username=h.totes';
+    const webUrl = 'https://instagram.com/h.totes';
+    let appOpened = false;
+
+    const onHide = () => { appOpened = true; };
+    document.addEventListener('visibilitychange', onHide);
+    window.addEventListener('blur', onHide, { once: true });
+
+    window.location.href = appUrl;
+
+    setTimeout(() => {
+        document.removeEventListener('visibilitychange', onHide);
+        if (!appOpened) {
+            window.open(webUrl, '_blank');
+        }
+    }, 1500);
+}
 
 document.getElementById('insta-btn').addEventListener('click', () => {
     const order = getOrderData();
     if (!order) return;
-    
-    alert(currentLang === 'fr' 
-        ? "Redirection vers Instagram. N'oubliez pas d'envoyer votre nom et les détails de votre commande !" 
-        : "Redirecting to Instagram. Don't forget to send your name and order details!");
-    
-    window.open("https://www.instagram.com/htote.s", '_blank');
+
+    const summary = buildOrderSummary(order);
+    const t = translations[currentLang];
+
+    copyToClipboard(summary).then(() => {
+        showToast(t.insta_toast);
+        setTimeout(openInstagram, 600);
+    });
 });
 
 // Initial Price Update

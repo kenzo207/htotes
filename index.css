@@ -64,6 +64,10 @@ header {
     transition: var(--transition);
 }
 
+#home, #configurator, #about {
+    scroll-margin-top: 260px;
+}
+
 header.scrolled {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
@@ -134,12 +138,13 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 0 5%;
+    padding: 220px 5% 60px;
     background: linear-gradient(135deg, #FDFBFF 0%, #F2E9F4 100%);
     position: relative;
+    z-index: 1;
     overflow: hidden;
 }
 
@@ -201,7 +206,7 @@ nav a:hover {
 .hero-image {
     flex: 1;
     position: relative;
-    height: 80vh;
+    height: 55vh;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -638,8 +643,12 @@ input:focus {
 @media (max-width: 968px) {
     .hero {
         flex-direction: column;
+        align-items: stretch;
         text-align: center;
         padding-top: 120px;
+    }
+    .hero-content {
+        width: 100%;
     }
     .hero h1 {
         font-size: 3rem;
@@ -663,6 +672,7 @@ input:focus {
 /* Color Picker */
 .color-options {
     display: flex;
+    flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -691,6 +701,133 @@ input:focus {
 .color-beige { background: #F5F5DC; }
 .color-navy { background: #1a1a3a; }
 .color-pink { background: #F8C8DC; }
-.color-terracotta { background: #E2725B; }
+.color-marron { background: #6B3A2A; }
 .color-purple { background: #A855F7; }
 .color-grey { background: #808080; }
+.color-brown { background: #6B4226; }
+
+/* Mobile fixes (375px, 390px, 412px) */
+@media (max-width: 768px) {
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    section, .customizer, footer, header {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    #home, #configurator, #about {
+        scroll-margin-top: 130px;
+    }
+
+    .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 140px;
+    }
+
+    /* Header must not overflow or hide content */
+    header {
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+
+    header .logo img {
+        height: 60px !important;
+    }
+
+    footer .logo img {
+        height: 90px !important;
+    }
+
+    div[style*="display: flex"][style*="align-items: center"] .cta-btn {
+        padding: 10px 18px !important;
+        font-size: 0.75rem !important;
+        margin-left: 10px !important;
+    }
+
+    /* Single-column personalization layout */
+    .customizer-layout {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 30px;
+    }
+
+    .customizer-preview {
+        position: static;
+        top: auto;
+        width: 100%;
+    }
+
+    .customizer-form {
+        width: 100%;
+    }
+
+    .model-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-display {
+        font-size: 1.6rem;
+    }
+
+    .option-group,
+    .check-item,
+    .motif-input,
+    .upload-zone,
+    input[type="text"],
+    input[type="tel"] {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    #configurator div[style*="display: flex"][style*="gap: 10px"] {
+        flex-direction: column;
+    }
+
+    #configurator div[style*="display: flex"][style*="gap: 10px"] .cta-btn {
+        flex: none !important;
+        width: 100%;
+    }
+
+    .inspo-gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .inspo-item {
+        height: 180px;
+    }
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background: var(--text);
+    color: var(--white);
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2000;
+    max-width: 90vw;
+    text-align: center;
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
