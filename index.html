@@ -7,6 +7,9 @@
     <title>H Totes | Sacs personnalisés haut de gamme</title>
     <meta name="description"
         content="Découvrez H Totes, des sacs en toile faits main et 100% personnalisables. Broderie, Ankara, Perles - L'élégance unique, au campus et au-delà.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -14,7 +17,7 @@
 
     <header id="header">
         <div class="logo">
-            <img src="logo.png" alt="H.TOTES" style="height: 220px; width: auto; vertical-align: middle;">
+            <img src="logo.webp" alt="H.TOTES" style="height: 220px; width: auto; vertical-align: middle;">
         </div>
         <nav>
             <ul>
@@ -41,7 +44,7 @@
                 création unique, conçue spécialement pour vous.</p>
         </div>
         <div class="hero-image">
-            <img src="assets/hero.png" alt="H Totes Signature Background">
+            <img src="assets/hero.webp" alt="H Totes Signature Background" fetchpriority="high">
         </div>
     </section>
 
@@ -55,7 +58,7 @@
 
             <div class="customizer-layout">
                 <div class="customizer-preview">
-                    <img id="preview-img" src="assets/inspo5.png" alt="Preview">
+                    <img loading="lazy" id="preview-img" src="assets/inspo5.webp" alt="Preview">
                     <div class="price-display"><span id="total-price">2000</span> F CFA</div>
                     <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);"
                         data-i18n="config_base_price">(Base + Options)</p>
@@ -72,12 +75,12 @@
                         <h4 data-i18n="config_model_title">Choisir mon modèle</h4>
                         <div class="model-grid">
                             <div class="model-card selected" data-model="classic" data-price="2000">
-                                <img src="assets/inspo5.png" alt="Classic">
+                                <img loading="lazy" src="assets/inspo5.webp" alt="Classic">
                                 <h5>H · Classic</h5>
                                 <div class="base-price">2,000 F CFA</div>
                             </div>
                             <div class="model-card" data-model="soft" data-price="2500">
-                                <img src="assets/soft_vert.png" alt="Soft">
+                                <img loading="lazy" src="assets/soft_vert.webp" alt="Soft">
                                 <h5>H · Soft</h5>
                                 <div class="base-price">2,500 F CFA</div>
                             </div>
@@ -109,10 +112,26 @@
                             <span data-i18n="opt_flocage">Ajouter un flocage (+1,500 F)</span>
                         </label>
 
-                        <label class="check-item">
-                            <input type="checkbox" class="opt-check" data-price="2500" id="opt-chainette">
-                            <span data-i18n="opt_chainette">Ajouter une chaînette (+2,500 F)</span>
-                        </label>
+                        <div style="margin-bottom: 10px;">
+                            <label class="check-item" id="label-charm">
+                                <input type="checkbox" class="opt-check" data-price="2000" id="opt-charm">
+                                <span data-i18n="opt_charm">Ajouter un charm en perles (+2,000 F)</span>
+                            </label>
+                            <div id="charm-section" class="charm-section" style="display: none;">
+                                <div class="charm-gallery" id="charm-gallery">
+                                    <div class="charm-item" data-charm-num="1"><img loading="lazy" src="assets/charms_1.webp" alt="Charm 1"></div>
+                                    <div class="charm-item" data-charm-num="2"><img loading="lazy" src="assets/charms_2.webp" alt="Charm 2"></div>
+                                    <div class="charm-item" data-charm-num="3"><img loading="lazy" src="assets/charms_3.webp" alt="Charm 3"></div>
+                                    <div class="charm-item" data-charm-num="4"><img loading="lazy" src="assets/charms_4.webp" alt="Charm 4"></div>
+                                    <div class="charm-item" data-charm-num="5"><img loading="lazy" src="assets/charms_5.webp" alt="Charm 5"></div>
+                                    <div class="charm-item" data-charm-num="6"><img loading="lazy" src="assets/charms_6.webp" alt="Charm 6"></div>
+                                    <div class="charm-item" data-charm-num="7"><img loading="lazy" src="assets/charms_7.webp" alt="Charm 7"></div>
+                                </div>
+                                <input type="text" class="motif-input" id="charm-precision-text"
+                                    placeholder="Des précisions ? (couleurs, taille...)"
+                                    data-i18n-placeholder="placeholder_charm_precision">
+                            </div>
+                        </div>
 
                         <div style="margin-bottom: 10px;">
                             <label class="check-item" id="label-broderie">
@@ -145,7 +164,7 @@
                         </div>
                         <div id="insp-preview-container" class="upload-preview-container" style="display: none;">
                             <div class="upload-preview">
-                                <img id="insp-img-preview" src="" alt="Preview">
+                                <img loading="lazy" id="insp-img-preview" src="" alt="Preview">
                                 <button class="remove-upload" id="remove-insp">X</button>
                             </div>
                             <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;" data-i18n="insp_ready">Image sélectionnée</span>
@@ -189,47 +208,47 @@
             <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;" data-i18n="inspo_desc">Vous aimez une de nos créations ? Sélectionnez-la et dites-nous comment la personnaliser pour vous.</p>
         </div>
         <div class="inspo-gallery">
-            <div class="inspo-item" data-inspo="inspiration1.jpeg"><img src="assets/inspiration1.jpeg" alt="Inspiration 1"></div>
-            <div class="inspo-item" data-inspo="inspiration2.jpeg"><img src="assets/inspiration2.jpeg" alt="Inspiration 2"></div>
-            <div class="inspo-item" data-inspo="inspiration3.jpeg"><img src="assets/inspiration3.jpeg" alt="Inspiration 3"></div>
-            <div class="inspo-item" data-inspo="inspiration4.jpeg"><img src="assets/inspiration4.jpeg" alt="Inspiration 4"></div>
-            <div class="inspo-item" data-inspo="inspiration5.jpeg"><img src="assets/inspiration5.jpeg" alt="Inspiration 5"></div>
-            <div class="inspo-item" data-inspo="inspiration6.jpeg"><img src="assets/inspiration6.jpeg" alt="Inspiration 6"></div>
-            <div class="inspo-item" data-inspo="inspiration7.jpeg"><img src="assets/inspiration7.jpeg" alt="Inspiration 7"></div>
-            <div class="inspo-item" data-inspo="inspiration8.jpeg"><img src="assets/inspiration8.jpeg" alt="Inspiration 8"></div>
-            <div class="inspo-item" data-inspo="inspiration9.jpeg"><img src="assets/inspiration9.jpeg" alt="Inspiration 9"></div>
-            <div class="inspo-item" data-inspo="inspiration10.jpeg"><img src="assets/inspiration10.jpeg" alt="Inspiration 10"></div>
-            <div class="inspo-item" data-inspo="inspiration11.jpeg"><img src="assets/inspiration11.jpeg" alt="Inspiration 11"></div>
-            <div class="inspo-item" data-inspo="inspiration12.jpeg"><img src="assets/inspiration12.jpeg" alt="Inspiration 12"></div>
-            <div class="inspo-item" data-inspo="inspiration13.jpeg"><img src="assets/inspiration13.jpeg" alt="Inspiration 13"></div>
-            <div class="inspo-item" data-inspo="inspiration14.jpeg"><img src="assets/inspiration14.jpeg" alt="Inspiration 14"></div>
-            <div class="inspo-item" data-inspo="inspiration16.jpeg"><img src="assets/inspiration16.jpeg" alt="Inspiration 16"></div>
-            <div class="inspo-item" data-inspo="inspitation17.jpeg"><img src="assets/inspitation17.jpeg" alt="Inspiration 17"></div>
-            <div class="inspo-item" data-inspo="inspiration18.jpeg"><img src="assets/inspiration18.jpeg" alt="Inspiration 18"></div>
-            <div class="inspo-item" data-inspo="inspiration19.jpeg"><img src="assets/inspiration19.jpeg" alt="Inspiration 19"></div>
-            <div class="inspo-item" data-inspo="inspiration20.jpeg"><img src="assets/inspiration20.jpeg" alt="Inspiration 20"></div>
-            <div class="inspo-item" data-inspo="inspiration21.jpeg"><img src="assets/inspiration21.jpeg" alt="Inspiration 21"></div>
-            <div class="inspo-item" data-inspo="inspiration22.jpeg"><img src="assets/inspiration22.jpeg" alt="Inspiration 22"></div>
-            <div class="inspo-item" data-inspo="inspiration23.jpeg"><img src="assets/inspiration23.jpeg" alt="Inspiration 23"></div>
-            <div class="inspo-item" data-inspo="inspiration24.jpeg"><img src="assets/inspiration24.jpeg" alt="Inspiration 24"></div>
-            <div class="inspo-item" data-inspo="inspiration25.jpeg"><img src="assets/inspiration25.jpeg" alt="Inspiration 25"></div>
-            <div class="inspo-item" data-inspo="inspiration26.jpeg"><img src="assets/inspiration26.jpeg" alt="Inspiration 26"></div>
-            <div class="inspo-item" data-inspo="inspiration27.jpeg"><img src="assets/inspiration27.jpeg" alt="Inspiration 27"></div>
-            <div class="inspo-item" data-inspo="inspiration28.jpeg"><img src="assets/inspiration28.jpeg" alt="Inspiration 28"></div>
-            <div class="inspo-item" data-inspo="inspiration29.jpeg"><img src="assets/inspiration29.jpeg" alt="Inspiration 29"></div>
-            <div class="inspo-item" data-inspo="inspiration30.jpeg"><img src="assets/inspiration30.jpeg" alt="Inspiration 30"></div>
-            <div class="inspo-item" data-inspo="inspiration31.jpeg"><img src="assets/inspiration31.jpeg" alt="Inspiration 31"></div>
-            <div class="inspo-item" data-inspo="inspiration32.jpeg"><img src="assets/inspiration32.jpeg" alt="Inspiration 32"></div>
-            <div class="inspo-item" data-inspo="inspiration33.jpeg"><img src="assets/inspiration33.jpeg" alt="Inspiration 33"></div>
-            <div class="inspo-item" data-inspo="inspiration34.jpeg"><img src="assets/inspiration34.jpeg" alt="Inspiration 34"></div>
-            <div class="inspo-item" data-inspo="inspiration35.jpeg"><img src="assets/inspiration35.jpeg" alt="Inspiration 35"></div>
-            <div class="inspo-item" data-inspo="inspiration36.jpeg"><img src="assets/inspiration36.jpeg" alt="Inspiration 36"></div>
-            <div class="inspo-item" data-inspo="inspiration37.jpeg"><img src="assets/inspiration37.jpeg" alt="Inspiration 37"></div>
-            <div class="inspo-item" data-inspo="inspiration38.jpeg"><img src="assets/inspiration38.jpeg" alt="Inspiration 38"></div>
-            <div class="inspo-item" data-inspo="inspiration39.jpeg"><img src="assets/inspiration39.jpeg" alt="Inspiration 39"></div>
-            <div class="inspo-item" data-inspo="inspiration40.jpeg"><img src="assets/inspiration40.jpeg" alt="Inspiration 40"></div>
-            <div class="inspo-item" data-inspo="inspiration41.jpeg"><img src="assets/inspiration41.jpeg" alt="Inspiration 41"></div>
-            <div class="inspo-item" data-inspo="inspiration42.jpeg"><img src="assets/inspiration42.jpeg" alt="Inspiration 42"></div>
+            <div class="inspo-item" data-inspo="inspiration1.webp"><img loading="lazy" src="assets/inspiration1.webp" alt="Inspiration 1"></div>
+            <div class="inspo-item" data-inspo="inspiration2.webp"><img loading="lazy" src="assets/inspiration2.webp" alt="Inspiration 2"></div>
+            <div class="inspo-item" data-inspo="inspiration3.webp"><img loading="lazy" src="assets/inspiration3.webp" alt="Inspiration 3"></div>
+            <div class="inspo-item" data-inspo="inspiration4.webp"><img loading="lazy" src="assets/inspiration4.webp" alt="Inspiration 4"></div>
+            <div class="inspo-item" data-inspo="inspiration5.webp"><img loading="lazy" src="assets/inspiration5.webp" alt="Inspiration 5"></div>
+            <div class="inspo-item" data-inspo="inspiration6.webp"><img loading="lazy" src="assets/inspiration6.webp" alt="Inspiration 6"></div>
+            <div class="inspo-item" data-inspo="inspiration7.webp"><img loading="lazy" src="assets/inspiration7.webp" alt="Inspiration 7"></div>
+            <div class="inspo-item" data-inspo="inspiration8.webp"><img loading="lazy" src="assets/inspiration8.webp" alt="Inspiration 8"></div>
+            <div class="inspo-item" data-inspo="inspiration9.webp"><img loading="lazy" src="assets/inspiration9.webp" alt="Inspiration 9"></div>
+            <div class="inspo-item" data-inspo="inspiration10.webp"><img loading="lazy" src="assets/inspiration10.webp" alt="Inspiration 10"></div>
+            <div class="inspo-item" data-inspo="inspiration11.webp"><img loading="lazy" src="assets/inspiration11.webp" alt="Inspiration 11"></div>
+            <div class="inspo-item" data-inspo="inspiration12.webp"><img loading="lazy" src="assets/inspiration12.webp" alt="Inspiration 12"></div>
+            <div class="inspo-item" data-inspo="inspiration13.webp"><img loading="lazy" src="assets/inspiration13.webp" alt="Inspiration 13"></div>
+            <div class="inspo-item" data-inspo="inspiration14.webp"><img loading="lazy" src="assets/inspiration14.webp" alt="Inspiration 14"></div>
+            <div class="inspo-item" data-inspo="inspiration16.webp"><img loading="lazy" src="assets/inspiration16.webp" alt="Inspiration 16"></div>
+            <div class="inspo-item" data-inspo="inspitation17.webp"><img loading="lazy" src="assets/inspitation17.webp" alt="Inspiration 17"></div>
+            <div class="inspo-item" data-inspo="inspiration18.webp"><img loading="lazy" src="assets/inspiration18.webp" alt="Inspiration 18"></div>
+            <div class="inspo-item" data-inspo="inspiration19.webp"><img loading="lazy" src="assets/inspiration19.webp" alt="Inspiration 19"></div>
+            <div class="inspo-item" data-inspo="inspiration20.webp"><img loading="lazy" src="assets/inspiration20.webp" alt="Inspiration 20"></div>
+            <div class="inspo-item" data-inspo="inspiration21.webp"><img loading="lazy" src="assets/inspiration21.webp" alt="Inspiration 21"></div>
+            <div class="inspo-item" data-inspo="inspiration22.webp"><img loading="lazy" src="assets/inspiration22.webp" alt="Inspiration 22"></div>
+            <div class="inspo-item" data-inspo="inspiration23.webp"><img loading="lazy" src="assets/inspiration23.webp" alt="Inspiration 23"></div>
+            <div class="inspo-item" data-inspo="inspiration24.webp"><img loading="lazy" src="assets/inspiration24.webp" alt="Inspiration 24"></div>
+            <div class="inspo-item" data-inspo="inspiration25.webp"><img loading="lazy" src="assets/inspiration25.webp" alt="Inspiration 25"></div>
+            <div class="inspo-item" data-inspo="inspiration26.webp"><img loading="lazy" src="assets/inspiration26.webp" alt="Inspiration 26"></div>
+            <div class="inspo-item" data-inspo="inspiration27.webp"><img loading="lazy" src="assets/inspiration27.webp" alt="Inspiration 27"></div>
+            <div class="inspo-item" data-inspo="inspiration28.webp"><img loading="lazy" src="assets/inspiration28.webp" alt="Inspiration 28"></div>
+            <div class="inspo-item" data-inspo="inspiration29.webp"><img loading="lazy" src="assets/inspiration29.webp" alt="Inspiration 29"></div>
+            <div class="inspo-item" data-inspo="inspiration30.webp"><img loading="lazy" src="assets/inspiration30.webp" alt="Inspiration 30"></div>
+            <div class="inspo-item" data-inspo="inspiration31.webp"><img loading="lazy" src="assets/inspiration31.webp" alt="Inspiration 31"></div>
+            <div class="inspo-item" data-inspo="inspiration32.webp"><img loading="lazy" src="assets/inspiration32.webp" alt="Inspiration 32"></div>
+            <div class="inspo-item" data-inspo="inspiration33.webp"><img loading="lazy" src="assets/inspiration33.webp" alt="Inspiration 33"></div>
+            <div class="inspo-item" data-inspo="inspiration34.webp"><img loading="lazy" src="assets/inspiration34.webp" alt="Inspiration 34"></div>
+            <div class="inspo-item" data-inspo="inspiration35.webp"><img loading="lazy" src="assets/inspiration35.webp" alt="Inspiration 35"></div>
+            <div class="inspo-item" data-inspo="inspiration36.webp"><img loading="lazy" src="assets/inspiration36.webp" alt="Inspiration 36"></div>
+            <div class="inspo-item" data-inspo="inspiration37.webp"><img loading="lazy" src="assets/inspiration37.webp" alt="Inspiration 37"></div>
+            <div class="inspo-item" data-inspo="inspiration38.webp"><img loading="lazy" src="assets/inspiration38.webp" alt="Inspiration 38"></div>
+            <div class="inspo-item" data-inspo="inspiration39.webp"><img loading="lazy" src="assets/inspiration39.webp" alt="Inspiration 39"></div>
+            <div class="inspo-item" data-inspo="inspiration40.webp"><img loading="lazy" src="assets/inspiration40.webp" alt="Inspiration 40"></div>
+            <div class="inspo-item" data-inspo="inspiration41.webp"><img loading="lazy" src="assets/inspiration41.webp" alt="Inspiration 41"></div>
+            <div class="inspo-item" data-inspo="inspiration42.webp"><img loading="lazy" src="assets/inspiration42.webp" alt="Inspiration 42"></div>
         </div>
         
         <div id="inspo-mod-container" class="inspo-mod-box" style="display: none; margin-top: 40px; padding: 30px; background: var(--bg-alt); border-radius: 20px;">
@@ -292,7 +311,7 @@ pour des femmes et des hommes qui savent ce qu'ils veulent.</p>
 
     <footer style="padding: 80px 5% 40px; background: var(--bg-alt); text-align: center;">
         <div class="logo" style="margin-bottom: 20px;">
-            <img src="logo.png" alt="H.TOTES" style="height: 130px; width: auto;">
+            <img loading="lazy" src="logo.webp" alt="H.TOTES" style="height: 130px; width: auto;">
         </div>
         <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 40px;" data-i18n="footer_desc">L'élégance
             artisanale, conçue pour durer.</p>
@@ -302,7 +321,7 @@ pour des femmes et des hommes qui savent ce qu'ils veulent.</p>
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
 </body>
 
 </html>
