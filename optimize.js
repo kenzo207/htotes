@@ -4,6 +4,18 @@ const CleanCSS = require('clean-css');
 const Terser = require('terser');
 const sharp = require('sharp');
 
+// Global error handlers to capture any silent crashes on Vercel
+process.on('uncaughtException', (err) => {
+    console.error('=== UNCAUGHT EXCEPTION ===');
+    console.error(err.stack || err);
+    process.exit(1);
+});
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('=== UNHANDLED REJECTION ===');
+    console.error(reason);
+    process.exit(1);
+});
+
 // Configuration
 const ASSETS_DIR = path.join(__dirname, 'assets');
 const LOGO_PNG = path.join(__dirname, 'logo.png');
@@ -20,8 +32,11 @@ async function optimizeCSS() {
     }
 
     try {
+        console.log(`Reading source CSS from ${srcPath}...`);
         const cssContent = fs.readFileSync(srcPath, 'utf8');
+        console.log(`Source CSS read success. Length: ${cssContent.length} characters. Minifying...`);
         const minified = new CleanCSS({ level: 2 }).minify(cssContent);
+        console.log('Minification success. Writing to destination...');
 
         if (minified.errors.length > 0) {
             console.error('CleanCSS Errors:', minified.errors);
@@ -50,11 +65,14 @@ async function optimizeJS() {
     }
 
     try {
+        console.log(`Reading source JS from ${srcPath}...`);
         const jsContent = fs.readFileSync(srcPath, 'utf8');
+        console.log(`Source JS read success. Length: ${jsContent.length} characters. Minifying with Terser...`);
         const minified = await Terser.minify(jsContent, {
             compress: true,
             mangle: true
         });
+        console.log('Terser minification success. Writing to destination...');
 
         if (minified.error) {
             console.error('Terser Error:', minified.error);
