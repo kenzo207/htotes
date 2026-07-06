@@ -523,3 +523,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
     });
 });
+
+// Image Preloading for Configurator (Option E)
+const imagesToPreload = [
+    'assets/inspo5.webp',
+    'assets/inspo3.webp',
+    'assets/inspo2.webp',
+    'assets/inspo4.webp',
+    'assets/inspo1.webp',
+    'assets/inspo6.webp',
+    'assets/inspo7.webp',
+    'assets/soft_vert.webp',
+    'assets/soft_bleu.webp',
+    'assets/soft_blanc.webp',
+    'assets/soft_gris.webp',
+    'assets/soft_noir.webp',
+    'assets/soft_brown.webp',
+    'assets/soft_purple.webp',
+    'assets/soft_rose.webp',
+    'assets/hero.webp'
+];
+
+window.addEventListener('load', () => {
+    // Delay slightly to prioritize critical page resources
+    setTimeout(() => {
+        imagesToPreload.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+        console.log(`[Option E] Preloaded ${imagesToPreload.length} configurator assets successfully.`);
+    }, 1000);
+});
